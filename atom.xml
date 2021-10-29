@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://Jack-Dun.github.io</id>
     <title>Jack-Dun&apos;s blog</title>
-    <updated>2021-10-29T04:11:09.312Z</updated>
+    <updated>2021-10-29T04:15:32.302Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://Jack-Dun.github.io"/>
     <link rel="self" href="https://Jack-Dun.github.io/atom.xml"/>
@@ -36,8 +36,7 @@
 <a href="https://github.com/Jack-Dun">🍑本人Github</a></p>
 <h1 id="traffic-light-display-system-based-on-c51">Traffic-Light-Display-System-Based-on-C51</h1>
 <h1 id="基于c51单片机的交通灯显示系统设计">基于C51单片机的交通灯显示系统设计</h1>
-<p>如今，交通信号灯在城市的每个十字路口都扮演着重要的角色。交通信号灯的出现，极大的方便了人们的生活。<br>
-本系统采用AT89C51为中心器件来设计交通灯控制器，系统实用性强、操作简单，能够模拟十字路口交通灯的各种状态显示以及倒计时时间。本设计系统由单片机，交通灯状态显示系统、LED数码显示系统等几大部分组成。<br>
+<p>如今，交通信号灯在城市的每个十字路口都扮演着重要的角色。交通信号灯的出现，极大的方便了人们的生活。本系统采用AT89C51为中心器件来设计交通灯控制器，系统实用性强、操作简单，能够模拟十字路口交通灯的各种状态显示以及倒计时时间。本设计系统由单片机，交通灯状态显示系统、LED数码显示系统等几大部分组成。<br>
 系统除基本的交通灯功能外，还具有倒计时、紧急情况处理等功能，较好的模拟实现了十字路口可能出现的状况。本系统采用C语言编写，主要编写了主程序，LED数码管显示程序等。<br>
 关键词：AT89C51、C语言、交通灯</p>
 <h1 id="仿真">仿真</h1>
