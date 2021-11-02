@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>三人表决器的VHDL设计仿真与CMOS版图设计 | Jack-Dun&#39;s blog</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://Jack-Dun.github.io/favicon.ico?v=1635817909102">
+<link rel="stylesheet" href="https://Jack-Dun.github.io/styles/main.css">
+
+
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
+
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="本设计三人表决器，是代表投票或举手表决的表决装置，为本人的课程设计。表决时，与会的有关人员只需按下各自表决器上赞成、反对或弃权的某一按钮，荧光屏上即显示出表决结果。在三人表决器中，三个人分别用手指拨动开关SW1、SW2、SW3 来表示自己的..." />
+    <meta name="keywords" content="" />
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://Jack-Dun.github.io">
+        <img src="https://Jack-Dun.github.io/images/avatar.png?v=1635817909102" class="site-logo">
+        <h1 class="site-title">Jack-Dun&#39;s blog</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      宝剑锋从磨砺出
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://Jack-Dun.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">三人表决器的VHDL设计仿真与CMOS版图设计</h2>
+            <div class="post-date">2021-10-24</div>
+            
+              <div class="feature-container" style="background-image: url('https://Jack-Dun.github.io/post-images/san-ren-biao-jue-qi-de-vhdl-she-ji-fang-zhen-yu-cmos-ban-tu-she-ji.png')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>本设计三人表决器，是代表投票或举手表决的表决装置，为本人的课程设计。表决时，与会的有关人员只需按下各自表决器上赞成、反对或弃权的某一按钮，荧光屏上即显示出表决结果。在三人表决器中，三个人分别用手指拨动开关SW1、SW2、SW3 来表示自己的意愿，如果对某决议同意，各人就把自己的指拨开关拨到高电平（上方），不同意就把自己的指拨开关拨到低电平（下方）。表决结果用（高电平）显示，如果决议通过那么实验板上L2亮；如果不通过那么实验板上L1亮；如果对某个决议有任意二到三人同意，那么此决议通过，L2亮；如果对某个决议只有一个人或没人同意，那么此决议不通过，L1亮。</p>
+<!-- more -->
+<p><a href="https://github.com/Jack-Dun/VHDL-Simulation-and-CMOS-Layout-of-Three-Person-Voting-Device">✋三人表决器的CMOS版图设计（Github）</a><br>
+<a href="https://github.com/Jack-Dun">💡本人Github</a></p>
+<h1 id="vhdl-simulation-and-cmos-layout-of-three-person-voting-device">VHDL-Simulation-and-CMOS-Layout-of-Three-Person-Voting-Device</h1>
+<h1 id="三人表决器的vhdl设计仿真与cmos版图设计">三人表决器的VHDL设计仿真与CMOS版图设计</h1>
+<ol>
+<li>独立完成集成电路的设计过程；</li>
+<li>对电路进行仿真验证；</li>
+<li>根据所用的工艺，选取合理的模型库；</li>
+<li>选用以lambda为单位的设计规则；</li>
+<li>全手工、层次化设计版图；</li>
+<li>达到指导书提出的设计指标要求；</li>
+<li>用VHDL进行电路的前期功能设计与仿真；</li>
+<li>用CMOS设计出合理且切实可行的逻辑电路；</li>
+<li>进行版图绘制，并进行检测。</li>
+</ol>
+<h1 id="cmos版图">CMOS版图</h1>
+<figure data-type="image" tabindex="1"><img src="https://Jack-Dun.github.io/post-images/1635814746960.png" alt="" loading="lazy"></figure>
+<h1 id="vhdl代码">VHDL代码</h1>
+<pre><code>library ieee;
+use ieee.std_logic_1164.all;
+entity bjq is
+port(
+          a:in std_logic_vector(2 downto 0); --3个人
+          num:buffer integer range 0 to 3; --表决通过人数
+co:out std_logic); --是否通过信号
+end bjq;
+architecture art of bjq is
+    Begin
+process(a)
+variable b:integer range 0 to 3; --定义变量b
+begin
+    b:=0;
+    for n in 0 to 2 loop
+if a(n)='1' then
+b:=b+1; --统计通过人数
+end if;
+    end loop;
+num&lt;=b;
+    if(b&gt;=2)then co&lt;='1';
+    else co&lt;='0';
+    end if;
+end process;
+end art;
+</code></pre>
+
+            </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://Jack-Dun.github.io/post/ji-yu-c51-dan-pian-ji-de-jiao-tong-deng-xian-shi-xi-tong-she-ji/">
+                  <h3 class="post-title">
+                    基于C51单片机的交通灯显示系统设计
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
+
+AOS.init();
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad()
+  </script>
+
+
+
+
+  
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'cc40871829471a16599e',
+        clientSecret: 'ad30bfee11b91e9d3bea12121b49db4770662960',
+        repo: 'Jack-Dun.github.io',
+        owner: 'Jack-Dun',
+        admin: ['Jack-Dun'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
+  </body>
+</html>
